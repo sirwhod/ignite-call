@@ -1,10 +1,11 @@
-import { Button, Text, TextInput } from '@ignite-ui/react'
-import { Form, FormAnnotation } from './styles'
+import { Button, TextInput } from '@ignite-ui/react'
+import { Form } from './styles'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { FormError } from '../FormError'
 
 const claimUsernameFromSchema = z.object({
   username: z
@@ -49,13 +50,11 @@ export function ClaimUsernameForm() {
           <ArrowRight />
         </Button>
       </Form>
-      <FormAnnotation>
-        <Text size="sm" data-error={!!errors.username}>
-          {errors.username
-            ? errors.username.message
-            : 'Digite o nome de usuário desejado.'}
-        </Text>
-      </FormAnnotation>
+      <FormError
+        error={!!errors.username}
+        message={errors.username?.message}
+        alt="Digite o nome de usuário desejado."
+      />
     </>
   )
 }

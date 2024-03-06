@@ -38,6 +38,7 @@ export function ClaimUsernameForm() {
       <Form as="form" onSubmit={handleSubmit(handleClainUsername)}>
         <TextInput
           crossOrigin={true}
+          data-error={!!errors.username}
           size="sm"
           prefix="ignite.com/"
           placeholder="Seu usuário"
@@ -49,7 +50,7 @@ export function ClaimUsernameForm() {
         </Button>
       </Form>
       <FormAnnotation>
-        <Text size="sm">
+        <Text size="sm" data-error={!!errors.username}>
           {errors.username
             ? errors.username.message
             : 'Digite o nome de usuário desejado.'}

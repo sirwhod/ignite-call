@@ -47,12 +47,18 @@ const timeIntervalsFormSchema = z.object({
         }
       })
     })
-    .refine((intervals) => {
-      return intervals.every(
-        (interval) =>
-          interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes,
-      )
-    }, 'O horário de termino deve ser pelo menos 1h distante do inicio.'),
+    .refine(
+      (intervals) => {
+        return intervals.every(
+          (interval) =>
+            interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes,
+        )
+      },
+      {
+        message:
+          'O horário de término deve ser pelo menos 1h distante do início.',
+      },
+    ),
 })
 
 type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
@@ -151,7 +157,7 @@ export default function Register() {
         </IntervalsContainer>
 
         {errors.intervals && (
-          <FormError size="sm">{errors.intervals.message}</FormError>
+          <FormError size="sm">{errors.intervals.root?.message}</FormError>
         )}
 
         <Button disabled={isSubmitting}>

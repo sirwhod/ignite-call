@@ -98,7 +98,7 @@ export default function Register() {
 
   async function handleSetTimeIntervals(data: unknown) {
     const { intervals } = data as TimeIntervalsFormOutput
-    await api.post('/users/time-intervals', intervals)
+    await api.post('/users/time-intervals', { intervals })
   }
 
   return (

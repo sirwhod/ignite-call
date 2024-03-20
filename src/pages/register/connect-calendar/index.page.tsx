@@ -18,6 +18,10 @@ export default function Register() {
     signIn('google')
   }
 
+  async function handleNavigateToNextStep() {
+    await router.push('/register/time-intervals')
+  }
+
   return (
     <Container>
       <Header>
@@ -56,7 +60,11 @@ export default function Register() {
             permissãos de acesso ao Google Calendar
           </AuthError>
         )}
-        <Button disabled={!isSignIn} type="submit">
+        <Button
+          onClick={handleNavigateToNextStep}
+          disabled={!isSignIn}
+          type="submit"
+        >
           Próximo passo <ArrowRight />
         </Button>
       </ConnectBox>

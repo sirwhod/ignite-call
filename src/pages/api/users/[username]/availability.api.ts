@@ -37,7 +37,8 @@ export default async function handle(
 
   if (isPastDate) {
     return res.json({
-      availability: [],
+      availableTimes: [],
+      possibleTimes: [],
     })
   }
 
@@ -50,7 +51,8 @@ export default async function handle(
 
   if (!userAvailability) {
     return res.json({
-      availability: [],
+      availableTimes: [],
+      possibleTimes: [],
     })
   }
 
